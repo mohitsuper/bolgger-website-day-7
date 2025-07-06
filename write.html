@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boom Blogger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="bg-gray-100">
+        <!-- //navbar  -->
+        <div class="nav-main w-full flex xl:px-10  px-5  py-3 xl:py-5 bg-gray-500 text-white justify-between items-center">
+            <div class="logo xl:text-xl text-[15px]">Boom Blogger.</div>
+            <nav>
+                <ul class="flex gap-4">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="write.html">Write</a></li>
+                    <li><a>Your Blogs</a></li>
+                    <li><a>Contact</a></li> 
+                    <div class="close"><ion-icon name="close-outline"></ion-icon></div>
+                </ul>
+            </nav>
+            <div class="search">
+                <input type="text" class="search-input px-5 py-2 rounded-[5px] text-black" placeholder="search">
+                <button class="search-button bg-blue-500 px-5 py-2 rounded-[5px]">Sumbit</button>
+            </div>
+            <div class="menu">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="banner-image xl:h-[340px] h-[200px] w-full py-2">
+            <img src="./image/New Project (21).png" alt="" class="h-full w-full obeject-contain">
+        </div>
+
+        <div class="w-full h-full px-5 py-6 xl:px-20 xl:py-10 bg-gray-100">
+        <!-- Option Bar -->
+        <div class="option text-xl font-bold mb-4 text-gray-800">
+            Write
+        </div>
+
+        <!-- Editor Box -->
+        <div class="w-full min-h-[60vh] p-5 bg-white rounded-lg shadow space-y-4">
+            <!-- Editable Input Area -->
+            <div id="editor" class="w-full h-[40vh] flex flex-col gap-4 rounded-md">
+                <input type="text" placeholder="Title" class="title border-gray-100 rounded-md py-3 border border-gray-100 px-4 outline-none">
+                <textarea name="" id="" placeholder="Start writing here..." class="des h-full w-full outline-none p-4 border border-gray-100 rounded-md"></textarea>
+            </div>
+            <!-- Toolbar Buttons -->
+            <div class="flex flex-wrap items-center gap-4">
+            <button onclick="format('bold')" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">Bold</button>
+            <button onclick="format('italic')" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">Italic</button>
+            <label class="cursor-pointer px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                <input type="submit" value="uplode" class="uplode"/>
+            </label>
+            </div>
+
+
+        </div>
+        </div>
+
+        <footer class="bg-gray-500 xl:px-10  px-5  py-3 xl:py-5 text-center text-white mt-2">@Copyright By Mohit Vijay 2025</footer>
+</body>
+<script src="main.js"></script>
+<script>
+    let title = document.querySelector('.title');
+    let des = document.querySelector('.des');
+    let uplode = document.querySelector(".uplode");
+    async function AddNewpost(){
+        let res = await fetch('https://dummyjson.com/posts/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title: title,
+            body: des,
+            userId: 5,
+        })
+        })
+    }
+    uplode.addEventListener("click",AddNewpost);
+
+</script>
+</html>
